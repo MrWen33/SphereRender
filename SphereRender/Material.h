@@ -1,0 +1,13 @@
+#pragma once
+#include"Ray.h"
+
+enum SurfaceType{
+	SPEC,
+	DIFF,
+	REFR
+};
+class Material {
+public:
+	Vector3f color;
+	SurfaceType type;
+};
