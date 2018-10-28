@@ -1,5 +1,5 @@
 #include "Scene.h"
-
+#include<iostream>
 Vector3f Scene::Intersect(const Ray & ray) const
 {
 	RayIsectInfo info(ray);
@@ -7,7 +7,7 @@ Vector3f Scene::Intersect(const Ray & ray) const
 		info.Intersect(s);
 	}
 	if (info.IsIntersect()) {
-		return info.obj->GetMaterial().color;
+		return Vector3f(info.point.z, info.point.z, info.point.z);
 	}
 	else {
 		return Vector3f();

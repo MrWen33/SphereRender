@@ -1,17 +1,19 @@
 #include "Sphere.h"
 #include<cmath>
+#include<iostream>
 float Sphere::Intersect(const Ray & ray) const
 {
 	const Vector3f& O1 = pos;
 	const Vector3f& O2 = ray.o;
-	const Vector3f& R = ray.dir;
+	const Vector3f& D = ray.dir;
 	Vector3f O = O2.Minus(O1);
-	float OdotR = O.Dot(R);
-	float delta = 4.f*(OdotR*OdotR - R.Dot(R)*(O.Dot(O) - r));
+	float OdotD = O.Dot(D);
+	float delta = 4.f*(OdotD*OdotD - D.Dot(D)*(O.Dot(O) - r*r));
 	if (delta < 0) return 0;
 	float sqrtDelta = std::sqrtf(delta);
-	float d1 = (2 * OdotR + sqrtDelta) / 2.f;
-	float d2 = (2 * OdotR - sqrtDelta) / 2.f;
+	float d1 = (-2 * OdotD + sqrtDelta) / 2.f*D.Dot(D);
+	float d2 = (-2 * OdotD - sqrtDelta) / 2.f*D.Dot(D);
+	//std::cout << d1 << " " << d2 << "\n";
 	if (d1 < 0) {
 		//0>d1>d2
 		return 0;
@@ -21,6 +23,7 @@ float Sphere::Intersect(const Ray & ray) const
 		return d1;
 	}
 	//d1>d2>0
+	//std::cout << d2 << "\n";
 	return d2;
 }
 

@@ -38,7 +38,7 @@ public:
 		Vector3f r = right.Mult((x - 0.5)*fovScale);
 		Vector3f u = up.Mult((y - 0.5)*fovScale);
 		Ray ray;
-		ray.dir = front.Add(r).Add(u);
+		ray.dir = front.Add(r).Add(u).Normalize();
 		ray.o = pos;
 		return ray;
 	}
