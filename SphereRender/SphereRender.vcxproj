@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Intergrator.cpp" />
     <ClCompile Include="IsectInfo.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene.cpp" />
@@ -123,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Intergrator.h" />
     <ClInclude Include="IsectInfo.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Ray.h" />

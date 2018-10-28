@@ -9,21 +9,19 @@ float Sphere::Intersect(const Ray & ray) const
 	Vector3f O = O2.Minus(O1);
 	float OdotD = O.Dot(D);
 	float delta = 4.f*(OdotD*OdotD - D.Dot(D)*(O.Dot(O) - r*r));
-	if (delta < 0) return 0;
+	if (delta < 0.001) return 0;
 	float sqrtDelta = std::sqrtf(delta);
 	float d1 = (-2 * OdotD + sqrtDelta) / 2.f*D.Dot(D);
 	float d2 = (-2 * OdotD - sqrtDelta) / 2.f*D.Dot(D);
-	//std::cout << d1 << " " << d2 << "\n";
-	if (d1 < 0) {
+	if (d1 < 0.001) {
 		//0>d1>d2
 		return 0;
 	}
-	if (d2 < 0) {
+	if (d2 < 0.001) {
 		//d1>0>d2
 		return d1;
 	}
 	//d1>d2>0
-	//std::cout << d2 << "\n";
 	return d2;
 }
 

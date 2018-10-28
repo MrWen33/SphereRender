@@ -32,9 +32,8 @@ public:
 	:pos(pos), up(up), front(front), right(right), fov(fov){
 		fovScale = std::tanf(fov*0.5*3.1415926 / 180) * 2;
 	};
-	void Shot(int width, int height,const Scene& sc, Photo& photo);
 
-	Ray GenRay(float x, float y) {
+	Ray GenRay(float x, float y) const{
 		Vector3f r = right.Mult((x - 0.5)*fovScale);
 		Vector3f u = up.Mult((y - 0.5)*fovScale);
 		Ray ray;

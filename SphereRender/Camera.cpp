@@ -20,11 +20,3 @@ void Photo::SaveAsPPM(std::string filename) {
 void Photo::Write(int x, int y, Vector3f color) {
 	data[y*width + x] = color;
 }
-
-void Camera::Shot(int width, int height, const Scene&sc, Photo& p) {
-	for (int i = 0; i < width; ++i) {
-		for (int j = 0; j < width; ++j) {
-			p.Write(i, j, sc.Intersect(GenRay(i / (float)width, j / (float)height)));
-		}
-	}
-}

@@ -63,6 +63,12 @@ public:
 	Vector3<T> Mult(U n) const {
 		return Vector3<T>(x * n, y * n, z * n);
 	}
+
+	template<>
+	Vector3<T> Mult(Vector3<T> n) const {
+		return Vector3<T>(x * n.x, y * n.y, z * n.z);
+	}
+
 	Vector3<T> Normalize() const {
 		return Div(Length());
 	}
