@@ -22,5 +22,4 @@ public:
 	void Shot(int width, int height, const Scene&sc, Photo& p) override;
 private:
 	int ppm;
-	float random();
 };

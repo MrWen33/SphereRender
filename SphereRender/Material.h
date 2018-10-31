@@ -9,5 +9,6 @@ enum SurfaceType{
 class Material {
 public:
 	Vector3f color;
-	SurfaceType type;
+	Vector3f emit;
+	SurfaceType type=DIFF;
 };

@@ -1,32 +1,23 @@
 #include "Scene.h"
 #include<cmath>
-Vector3f Scene::Sample(const Ray & ray) const
+
+
+//向场景中发射射线，返回最终颜色
+
+Scene::Scene(std::shared_ptr<Sampler> sampler) :sampler(sampler) {}
+
+Vector3f Scene::Sample(const Ray & ray, int depth, const Sphere* self) const
 {
-	RayIsectInfo info(ray);
+	return sampler->Sample(*this, ray, depth, self);
+}
+
+RayIsectInfo Scene::Intersect(const Ray & ray,const Sphere* self) const
+{
+	RayIsectInfo rayIsect(ray);
 	for (auto& s : spheres) {
-		info.Intersect(s);
+		//防止自遮挡
+		if (self == &s)continue;
+		rayIsect.Intersect(s);
 	}
-	if (info.IsIntersect()) {
-		Vector3f color;
-		for (auto& l : lights) {
-			Ray toLight;
-			toLight.o = info.point;
-			toLight.dir = l.GetPos().Minus(info.point).Normalize();
-			RayIsectInfo shadowRay(toLight);
-			for (auto&s : spheres) {
-				if (&s == info.obj) continue;
-				shadowRay.Intersect(s);
-			}
-			shadowRay.Intersect(l);
-			if (shadowRay.obj == &l) 
-			{
-				float cosTheta = std::fmax(0, toLight.dir.Dot(info.normal));
-				color = color.Add(info.obj->GetMaterial().color.Mult(l.GetMaterial().color).Mult(cosTheta));
-			}
-		}
-		return color;
-	}
-	else {
-		return Vector3f();
-	}
+	return rayIsect;
 }

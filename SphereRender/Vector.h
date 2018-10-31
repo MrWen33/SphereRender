@@ -72,6 +72,8 @@ public:
 	Vector3<T> Normalize() const {
 		return Div(Length());
 	}
+
+	bool IsZero() { return x==0&&y==0&&z==0; }
 };
 
 typedef Vector3<float> Vector3f;

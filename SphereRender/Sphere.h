@@ -14,7 +14,9 @@ public:
 		pos.Set(x, y, z);
 	}
 	auto GetPos() const { return pos; }
-	
+	void SetR(float r) { this->r = r; }
+	float GetR() { return r; }
+
 	float Intersect(const Ray& ray) const;
 	bool IsIntersect(const Ray& ray) const;
 	Material GetMaterial() const { return material; }
